@@ -51,7 +51,7 @@ if(document===undefined){
     return (
     <>
     <p
-    style={{paddingLeft:level?`${(level*12) +12}`:"12px"}}
+    style={{paddingLeft:level?`${(level*12) +12}px`:"12px"}}
     className={cn("hidden text-sm font-medium text-muted-foreground/50",
         expanded && "last:block",
         level==0 && "hidden"
