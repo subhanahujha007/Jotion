@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useRef, useEffect } from 'react'
-import { Menu, PlusCircle } from "lucide-react"
+import { Menu, PlusCircle, Search, Settings } from "lucide-react"
 import UserItem from './UserItem'
 import { useMutation, useQuery } from 'convex/react'
 import { api } from '../../../../convex/_generated/api'
@@ -77,6 +77,8 @@ const handlecreate=()=>{
                         </div>
 
                         <div className='mt-4'>
+                            <Item label="Search" icon={Search} onClick={()=>{}} issearch />
+                            <Item label="Settings" icon={Settings} onClick={()=>{}}  />
                         <Item onClick={handlecreate} label="New Page" icon={PlusCircle} />
                             {
                                 documents?.map((document)=>{
