@@ -1,5 +1,5 @@
 "use client"
-import { ChevronDown, ChevronRight, LucideIcon, Plus } from 'lucide-react'
+import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus } from 'lucide-react'
 import React from 'react'
 import { Id } from '../../../../convex/_generated/dataModel';
 import { cn } from '@/lib/utils';
@@ -8,6 +8,7 @@ import { useMutation } from 'convex/react';
 import { api } from '../../../../convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 interface itemprops {
   id?:Id<"Documents">;
   label:String;
@@ -69,6 +70,16 @@ toast.promise(promise,{
       )}
       {!!id && (
         <div className='ml-auto flex items-center gap-x-2 '>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild onClick={(e)=>e.stopPropagation()}>
+         <div role="button" className="opacity-0 dark:hover:bg-neutral-600 bg-neutral-300 group-hover:opacity-100 h-full ml-auto rounded-sm"> 
+          <MoreHorizontal className="h-4 w-4 text-muted-foreground"/> 
+          </div>
+            </DropdownMenuTrigger>
+            
+           
+
+          </DropdownMenu>
           <div role="button" onClick={oncreate} className="opacity-0 group-hover:opacity-100 h-full ml-auto hover:bg-neutral-300
           rounded-sm dark:hover:bg-neutral-600">
             <Plus className='h-4 w-4 text-muted-foreground'/>
