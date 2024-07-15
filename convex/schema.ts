@@ -9,8 +9,8 @@ export default defineSchema({
         coverimage:v.optional(v.string()),
         content:v.optional(v.string()),
         isPublished:v.boolean(),
-        Parentdocument:v.optional(v.string())
+        Parentdocument:v.optional(v.id("Documents"))
     })
     .index("by_userid",["userid"])
-    .index("by_parents",["Parentdocument","userid"])
+    .index("by_parents",["userid","Parentdocument"])
 })

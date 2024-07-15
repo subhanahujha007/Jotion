@@ -2,12 +2,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Menu, PlusCircle, Search, Settings } from "lucide-react"
 import UserItem from './UserItem'
-import { useMutation, useQuery } from 'convex/react'
+import { useMutation } from 'convex/react'
 import { api } from '../../../../convex/_generated/api'
-import Item from "../_components/Item"
+import {Item} from "../_components/Item"
 import { toast } from 'sonner'
+import { DocumentItem } from './document-list'
 const Navigation = () => {
-    const documents= useQuery(api.Documents.get)
     const create=useMutation(api.Documents.create)
     const [open, setOpen] = useState(false)
     const sidebarRef = useRef<HTMLDivElement>(null)
@@ -75,16 +75,12 @@ const handlecreate=()=>{
                             <UserItem/>
                             
                         </div>
-
-                        <div className='mt-4'>
-                            <Item label="Search" icon={Search} onClick={()=>{}} issearch />
+                        <Item label="Search" icon={Search} onClick={()=>{}} issearch />
                             <Item label="Settings" icon={Settings} onClick={()=>{}}  />
                         <Item onClick={handlecreate} label="New Page" icon={PlusCircle} />
-                            {
-                                documents?.map((document)=>{
-                                    return <p key={document._id}>{document.title}</p>
-                                })
-                            }
+                      
+                        <div >
+                      <DocumentItem/>
                         </div>
                         <div
                             onMouseDown={handleMouseDown}

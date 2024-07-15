@@ -2,15 +2,27 @@
 import {v} from "convex/values"
 import {mutation,query} from "./_generated/server"
 import {Doc,Id} from "./_generated/dataModel"
+export const sidebar=query({
+    args:{
+        Parentdocument:v.optional(v.id("Documents"))
+    },
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error ("user not authenticated")
+            const userid=identity.subject
+        const documents = await ctx.db
+        .query("Documents")
+        .withIndex("by_parents", (q) =>
+          q.eq("userid", userid).eq("Parentdocument", args_0.Parentdocument)
+        )
+        .filter((q) => q.eq(q.field("isArchived"), false))
+        .order("desc")
+        .collect();
+  
 
-export const get =query({
-handler:async(ctx)=>{
-    const identity=await ctx.auth.getUserIdentity()
-    if(!identity)throw new Error("user not authenticated")
-        const document=await ctx.db.query("Documents").collect()
-return document
-}
-})
+    return documents
+    },
+    })
 export const create=mutation({
     args:{
         title:v.string(),
