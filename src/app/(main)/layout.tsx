@@ -5,9 +5,14 @@ import { redirect } from "next/navigation"
 import React from "react"
 
 const Mainlayout = ({children}:{children:React.ReactNode}) => {
-    const {isAuthenticated} = useConvexAuth()
-    //if(!isAuthenticated) return redirect("/")
-
+    const {isAuthenticated,isLoading} = useConvexAuth()
+  
+if(isLoading){
+    return(
+        <div className="flex h-full w-full justify-center items-center" ><p className="font-bold">Loading...</p></div >
+    )
+}
+if(!isAuthenticated) return redirect("/")
     return (
         <div className="h-full dark:bg-[#1F1F1F] flex">
             <Navigation />

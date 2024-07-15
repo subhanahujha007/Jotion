@@ -1,9 +1,14 @@
 "use client"
 import React, { useState, useRef, useEffect } from 'react'
-import { Menu } from "lucide-react"
+import { Menu, PlusCircle } from "lucide-react"
 import UserItem from './UserItem'
-
+import { useMutation, useQuery } from 'convex/react'
+import { api } from '../../../../convex/_generated/api'
+import Item from "../_components/Item"
+import { toast } from 'sonner'
 const Navigation = () => {
+    const documents= useQuery(api.Documents.get)
+    const create=useMutation(api.Documents.create)
     const [open, setOpen] = useState(false)
     const sidebarRef = useRef<HTMLDivElement>(null)
     const [isResizing, setIsResizing] = useState(false)
@@ -49,6 +54,15 @@ const Navigation = () => {
         }
     }, [isResizing])
 
+const handlecreate=()=>{
+    const promise=create({title:"Untitled"})
+    toast.promise(promise,{
+        loading:"creating a new node",
+        success:"new node created",
+        error:"error creating a new node"
+    })
+}
+
     return (
         <>
             {
@@ -59,10 +73,16 @@ const Navigation = () => {
                         <div className='flex flex-row'>
                             <Menu onClick={closeSidebar} />
                             <UserItem/>
+                            
                         </div>
 
                         <div className='mt-4'>
-                            <p>Documents</p>
+                        <Item onClick={handlecreate} label="New Page" icon={PlusCircle} />
+                            {
+                                documents?.map((document)=>{
+                                    return <p key={document._id}>{document.title}</p>
+                                })
+                            }
                         </div>
                         <div
                             onMouseDown={handleMouseDown}

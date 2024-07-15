@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexChildProvider } from "@/components/convex-provider";
-
+import {Toaster} from "sonner"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
 disableTransitionOnChange
-storageKey="Jotion-change-theme">{children}</ThemeProvider>
+storageKey="Jotion-change-theme">
+  <Toaster className="bottom-center"/>
+  {children}</ThemeProvider>
 </ConvexChildProvider>
         </body>
     </html>
