@@ -6,6 +6,7 @@ import { useMutation } from 'convex/react'
 import { api } from '../../../../convex/_generated/api'
 import {Item} from "../_components/Item"
 import { toast } from 'sonner'
+import TrashBox from "./TrashBox"
 import { DocumentItem } from './document-list'
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 const Navigation = () => {
@@ -88,7 +89,7 @@ const handlecreate=()=>{
                         <Item label="Trash" icon={Trash} />
                         </PopoverTrigger>         
                         <PopoverContent className="w-72" side="right">
-                        <p>Trash box</p>
+                        <TrashBox/>
                         </PopoverContent>
                       </Popover>
                         </div>

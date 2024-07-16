@@ -78,7 +78,7 @@ export const create=mutation({
         },
 })
 export const gettrash=query({
-  handler:async(ctx, args_0)=> {
+  handler:async(ctx)=> {
       const identity=await ctx.auth.getUserIdentity()
       if(!identity)throw new Error("not authenticated")
         const userid=identity.subject
@@ -104,6 +104,13 @@ const chlidren=await ctx.db.query("Documents")
 .withIndex("by_parents",(q)=>q.eq("userid",userid)
 .eq("Parentdocument",documentid))
 .collect()
+for(const child of chlidren){
+    await ctx.db.patch(child._id,{
+        isArchived:false,
+    })
+await recursiverestore(child._id)
+}
+
 }
 
                 if(existingdocument.Parentdocument){
@@ -112,7 +119,21 @@ const chlidren=await ctx.db.query("Documents")
                         options.Parentdocument=undefined
                     }
                 }
-                await ctx.db.patch(args_0.id,options)
-                return existingdocument
+                const document=await ctx.db.patch(args_0.id,options)
+                recursiverestore(args_0.id)
+                return document
     },
+})
+export const remove=mutation({
+    args:{id:v.id("Documents")},
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error("not authenticated")
+            const userid=identity.subject
+        const existingdocument=await ctx.db.get(args_0.id)
+        if(!existingdocument)throw new Error("document not found")
+            if(existingdocument.userid!=userid)throw new Error("not authroized")
+                const document=await ctx.db.delete(args_0.id)
+            return document
+    }
 })
