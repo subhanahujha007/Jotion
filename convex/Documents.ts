@@ -77,3 +77,42 @@ export const create=mutation({
         return document
         },
 })
+export const gettrash=query({
+  handler:async(ctx, args_0)=> {
+      const identity=await ctx.auth.getUserIdentity()
+      if(!identity)throw new Error("not authenticated")
+        const userid=identity.subject
+    const document=await ctx.db.query("Documents").withIndex("by_userid",(q)=>q.eq("userid",userid))
+    .filter((q)=>q.eq(q.field("isArchived"),true)).order("desc").collect()
+    return document
+  },  
+})
+export const restore=mutation({
+    args:{id:v.id("Documents")},
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error("not authenticated")
+          const userid=identity.subject
+        const existingdocument=await ctx.db.get(args_0.id)
+        if(!existingdocument)throw new Error("document not found")
+            if(existingdocument.userid!=userid)throw new Error("not authroized")
+                const options:Partial<Doc<"Documents">>={
+                    isArchived:false,
+                }
+const recursiverestore=async(documentid:Id<"Documents">)=>{
+const chlidren=await ctx.db.query("Documents")
+.withIndex("by_parents",(q)=>q.eq("userid",userid)
+.eq("Parentdocument",documentid))
+.collect()
+}
+
+                if(existingdocument.Parentdocument){
+                    const parent=await ctx.db.get(existingdocument.Parentdocument)
+                    if(parent?.isArchived){
+                        options.Parentdocument=undefined
+                    }
+                }
+                await ctx.db.patch(args_0.id,options)
+                return existingdocument
+    },
+})

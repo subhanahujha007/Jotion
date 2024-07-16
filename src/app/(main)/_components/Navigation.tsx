@@ -1,12 +1,13 @@
 "use client"
 import React, { useState, useRef, useEffect } from 'react'
-import { Menu, PlusCircle, Search, Settings } from "lucide-react"
+import { Menu, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react"
 import UserItem from './UserItem'
 import { useMutation } from 'convex/react'
 import { api } from '../../../../convex/_generated/api'
 import {Item} from "../_components/Item"
 import { toast } from 'sonner'
 import { DocumentItem } from './document-list'
+import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 const Navigation = () => {
     const create=useMutation(api.Documents.create)
     const [open, setOpen] = useState(false)
@@ -81,6 +82,15 @@ const handlecreate=()=>{
                       
                         <div >
                       <DocumentItem/>
+                      <Item label="add new page" icon={Plus} onClick={handlecreate} />
+                      <Popover>
+                        <PopoverTrigger className="w-full mt-4">
+                        <Item label="Trash" icon={Trash} />
+                        </PopoverTrigger>         
+                        <PopoverContent className="w-72" side="right">
+                        <p>Trash box</p>
+                        </PopoverContent>
+                      </Popover>
                         </div>
                         <div
                             onMouseDown={handleMouseDown}

@@ -21,7 +21,7 @@ const UserItem = () => {
 <ChevronsLeftRight className='rotate-90 ml-2 h-4 w-4 text-muted-foreground'/>
     </div>
     </DropdownMenuTrigger>
-    <DropdownMenuContent className='w-80' align="start" alignOffset={11} >
+    <DropdownMenuContent className='w-80 bg-secondary' align="start" alignOffset={11} >
        <div className='flex flex-col space-y-4 p-2'>
 <p className='text-muted-foreground font-xs font-medium leading-none'>{user?.emailAddresses[0].emailAddress}</p>
        </div>
