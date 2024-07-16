@@ -1,11 +1,13 @@
 "use client"
 import { useMutation, useQuery } from 'convex/react'
 import { useParams } from 'next/navigation'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { api } from '../../../../convex/_generated/api'
 import { Id } from '../../../../convex/_generated/dataModel'
 import { toast } from 'sonner'
+import { Search } from 'lucide-react'
+import { Input } from "@/components/ui/input"
 
 const TrashBox = () => {
     const params=useParams()
@@ -45,7 +47,21 @@ if(document===undefined){
     <div>Loading...</div>
 }
   return (
-    <div>TrashBox</div>
+    <div className="text-sm">
+        <div className="flex items-center gap-x-1 p-2">
+            <Search className="h-4 w-4"/>
+            <Input value={search} onChange={(e)=>e.target.value}
+            placeholder="filtering by page title.."
+            className="h-7 px-2 focus-visible:ring-transparent bg-secondary" />
+
+        </div>
+        <div className="mt-4 px-1 pb-1">
+            <p className="hidden last:block text-sm text-muted text-center pb-2">
+                no documents found..
+            </p>
+
+        </div>
+    </div>
   )
 }
 
