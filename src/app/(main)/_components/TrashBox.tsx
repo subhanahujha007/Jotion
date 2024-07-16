@@ -59,7 +59,20 @@ if(document===undefined){
             <p className="hidden last:block text-sm text-muted text-center pb-2">
                 no documents found..
             </p>
-
+{
+    filterdocuments?.map((doc)=>{
+        return(
+            <div
+            key={doc._id}
+            role="button"
+            className="text-sm rounded-sm w-full hover:bg-primary/5
+             flex items-center text-primary justify-between"
+             onClick={()=>doc._id}>
+               <span>{doc.title}</span>
+            </div>
+        )
+    })
+}
         </div>
     </div>
   )
