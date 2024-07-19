@@ -17,6 +17,7 @@ if(!isAuthenticated) return redirect("/")
     return (
         <div className="h-full dark:bg-[#1F1F1F] flex">
             <Navigation />
+            
             <main className="flex-1 overflow-y-auto h-full">
                 <Searchcommands/>
                 {children}
