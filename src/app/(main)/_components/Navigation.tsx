@@ -9,7 +9,9 @@ import { toast } from 'sonner'
 import TrashBox from "./TrashBox"
 import { DocumentItem } from './document-list'
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
+import { useSearch } from '../../../../hooks/use-search'
 const Navigation = () => {
+    const search=useSearch()
     const create=useMutation(api.Documents.create)
     const [open, setOpen] = useState(false)
     const sidebarRef = useRef<HTMLDivElement>(null)
@@ -77,7 +79,7 @@ const handlecreate=()=>{
                             <UserItem/>
                             
                         </div>
-                        <Item label="Search" icon={Search} onClick={()=>{}} issearch />
+                        <Item label="Search" icon={Search} onClick={search.onopen} issearch />
                             <Item label="Settings" icon={Settings} onClick={()=>{}}  />
                         <Item onClick={handlecreate} label="New Page" icon={PlusCircle} />
                       

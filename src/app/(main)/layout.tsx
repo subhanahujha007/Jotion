@@ -3,6 +3,7 @@ import Navigation from "./_components/Navigation"
 import { useConvexAuth } from "convex/react"
 import { redirect } from "next/navigation"
 import React from "react"
+import Searchcommands from "./_components/search-commands"
 
 const Mainlayout = ({children}:{children:React.ReactNode}) => {
     const {isAuthenticated,isLoading} = useConvexAuth()
@@ -17,6 +18,7 @@ if(!isAuthenticated) return redirect("/")
         <div className="h-full dark:bg-[#1F1F1F] flex">
             <Navigation />
             <main className="flex-1 overflow-y-auto h-full">
+                <Searchcommands/>
                 {children}
             </main>
         </div>

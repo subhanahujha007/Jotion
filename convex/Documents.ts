@@ -137,3 +137,18 @@ export const remove=mutation({
             return document
     }
 })
+
+export const getsearch=query({
+    handler:async(ctx)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error("not authenticated")
+            const userid=identity.subject
+        const documents=await ctx.db.query("Documents")
+        .withIndex("by_userid",(q)=>q.eq("userid",userid)).
+            filter((q)=>q.eq(q.field("isArchived"),true))
+            .order("desc")
+            .collect()
+            return documents
+        },
+
+})
