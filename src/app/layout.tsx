@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexChildProvider } from "@/components/convex-provider";
 import {Toaster} from "sonner"
+import { Modelprovider } from "@/components/Settings-model";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
 disableTransitionOnChange
 storageKey="Jotion-change-theme">
   <Toaster className="bottom-center"/>
+  <Modelprovider/>
   {children}</ThemeProvider>
 </ConvexChildProvider>
         </body>
