@@ -8,8 +8,8 @@ import { DialogHeader } from '@/components/ui/dialog';
 export const Settingcomponent=()=>{
     const settings=Usersetting()
     return(
-        <Dialog open={settings.onopen} onOpenChange={settings.isopen}>
-            <DialogContent>
+        <Dialog  open={settings.onopen} onOpenChange={settings.isclose}>
+            <DialogContent  >
                 <DialogHeader className="border-b p-3">
 <h2 className="text-lg font-medium"> My Settings</h2>
                 </DialogHeader>

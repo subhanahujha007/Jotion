@@ -152,3 +152,42 @@ export const getsearch=query({
         },
 
 })
+export const getbyid=query({
+    args:{documentid:v.id("Documents")},
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error("not authenticated")
+            const userid=identity.subject
+        const documents=await ctx.db.get(args_0.documentid)
+        if(!documents)throw new Error("document not found")
+            if(documents.isPublished && !documents.isArchived){
+                return documents
+            }
+            if(userid !== documents.userid)throw new Error ("not authorized")
+                return documents
+    }       
+})
+export const update=mutation({
+    args:{
+        id:v.id("Documents"),
+        title:v.optional(v.string()),
+        content:v.optional(v.string()),
+        coverimage:v.optional(v.string()),
+        icon:v.optional(v.string()),
+        isPublished:v.optional(v.boolean()),
+    }
+    ,
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity)throw new Error("Unauthenticated")
+            const userid=identity.subject
+        const {id,...rest}=args_0
+        const existingdocument=await ctx.db.get(args_0.id)
+        if(!existingdocument)throw new Error("Not Found")
+            if(existingdocument.userid !== userid)throw new Error("Unauthorized")
+const documents=await ctx.db.patch(args_0.id,{
+    ...rest
+})
+return documents
+    },
+})

@@ -4,7 +4,7 @@ type Settingstore={
     isopen:()=>void,
     isclose:()=>void
 } 
-import React from 'react'
+
 
 export const Usersetting=create<Settingstore>((set)=>({
     onopen:false,

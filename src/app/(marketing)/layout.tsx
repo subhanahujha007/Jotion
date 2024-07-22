@@ -7,6 +7,7 @@ return(
         <Navbar/>
         <main className="h-full pt-20">
             <Modelprovider/>
+            
         {children}
         </main>
     </div>

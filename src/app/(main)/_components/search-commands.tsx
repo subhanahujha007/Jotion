@@ -44,8 +44,8 @@ const SearchCommands = () => {
     <CommandDialog  open={isOpen} onOpenChange={close}>
       <CommandInput  placeholder={`Search ${user?.fullName}'s Jotion...`} />
       <CommandList >
-        <CommandEmpty>No results found</CommandEmpty>
-        <CommandGroup  heading="Documents">
+        <CommandEmpty>No results found ... </CommandEmpty>
+        <CommandGroup  heading="List of documents">
           {documents?.map((item) => (
             <CommandItem
               key={item._id}

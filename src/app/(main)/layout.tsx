@@ -19,7 +19,7 @@ if(!isAuthenticated) return redirect("/")
             <Navigation />
             
             <main className="flex-1 overflow-y-auto h-full">
-                <Searchcommands/>
+                <Searchcommands  />
                 {children}
             </main>
         </div>

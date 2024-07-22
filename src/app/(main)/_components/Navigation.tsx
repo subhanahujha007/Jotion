@@ -11,7 +11,6 @@ import { DocumentItem } from './document-list'
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 import { useSearch } from '../../../../hooks/use-search'
 import { Usersetting } from '../../../../hooks/use-settings'
-import { useParams } from 'next/navigation'
 
 const Navigation = () => {
     const settings=Usersetting()
@@ -82,7 +81,7 @@ const Navigation = () => {
                         <Menu onClick={closeSidebar} />
                         <UserItem />
                     </div>
-                    <Item label="Search" icon={Search} onClick={search.onopen} issearch />
+                    <Item label="Search"  icon={Search} onClick={search.onopen} issearch />
                     <Item label="Settings" icon={Settings} onClick={settings.isopen} />
                     <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
                     <div>
