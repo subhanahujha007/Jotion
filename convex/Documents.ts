@@ -179,12 +179,12 @@ export const update=mutation({
     ,
     handler:async(ctx, args_0)=> {
         const identity=await ctx.auth.getUserIdentity()
-        if(!identity)throw new Error("Unauthenticated")
-            const userid=identity.subject
+     if(!identity){throw new Error("Unauthenticated")}
+           const userid=identity.subject
         const {id,...rest}=args_0
         const existingdocument=await ctx.db.get(args_0.id)
         if(!existingdocument)throw new Error("Not Found")
-            if(existingdocument.userid !== userid)throw new Error("Unauthorized")
+           if(existingdocument.userid !== userid)throw new Error("Unauthorized")
 const documents=await ctx.db.patch(args_0.id,{
     ...rest
 })

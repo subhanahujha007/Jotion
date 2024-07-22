@@ -12,9 +12,9 @@ const page = () => {
     documentid:params.documentsid as Id<"Documents">
   })
   if(documents===undefined)return(
-    <center>
-      Loading...
-    </center>
+    <nav className="bg-background dark:bg-[1F1F1F] px-3 py-3 w-full flex items-center gap-x-4">
+<Title.Skeelton/>
+    </nav>
   )
   if(documents===null)return null
   return (
