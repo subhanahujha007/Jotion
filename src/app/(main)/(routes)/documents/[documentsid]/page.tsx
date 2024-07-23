@@ -7,6 +7,7 @@ import { Id } from '../../../../../../convex/_generated/dataModel'
 import  Title  from '../../../_components/Title'
 import Banner from '@/app/(main)/_components/Banner'
 import Toolbar from '@/app/(main)/_components/Toolbar'
+import Cover from '@/components/ui/Cover'
 
 const page = () => {
   const params=useParams()
@@ -32,7 +33,7 @@ const page = () => {
     }
     <div className="pb-40">
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-        <div className="h-[35vh]" />
+       <Cover url={documents.coverimage} />
     <Toolbar initialdata={documents} />
       </div>
     </div>
