@@ -11,7 +11,7 @@ interface EditorProps {
 }
 
 const Editor = ({ onChange, initialContent, editable  }: EditorProps) => {
-    const editor = useCreateBlockNote({
+    const editor:BlockNoteEditor = useCreateBlockNote({
         initialContent: initialContent ? JSON.parse(initialContent) as PartialBlock[] : undefined,
         editable
     });
