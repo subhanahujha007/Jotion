@@ -7,6 +7,7 @@ type Settingstore={
 
 
 export const Usersetting=create<Settingstore>((set)=>({
+    url:undefined,
     onopen:false,
     isopen:()=>set({onopen:true}),
     isclose:()=>set({onopen:false})

@@ -28,14 +28,19 @@ const onchange=async(file?:File)=>{
 if(file){
     setissubmitting(true)
     setfile(file)
-    const res=await edgestore.publicFiles.upload({file})
+     
+    const res=await edgestore.publicFiles.upload({file,
+        options:{
+            replaceTargetUrl:coverimage.url
+        }
+    })
     await update({
         id:params.documentsid as Id<"Documents">,
         coverimage:res.url
-    })
+    })}
     onclose()
 }
-}
+
     return(
         <Dialog open={coverimage.isopen} onOpenChange={coverimage.onclose}>
             <DialogContent>

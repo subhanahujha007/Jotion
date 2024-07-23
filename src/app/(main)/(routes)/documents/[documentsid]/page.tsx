@@ -8,6 +8,7 @@ import  Title  from '../../../_components/Title'
 import Banner from '@/app/(main)/_components/Banner'
 import Toolbar from '@/app/(main)/_components/Toolbar'
 import Cover from '@/components/ui/Cover'
+import Editor from '@/app/(main)/_components/Editor'
 
 const page = () => {
   const params=useParams()
@@ -35,6 +36,10 @@ const page = () => {
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
        <Cover url={documents.coverimage} />
     <Toolbar initialdata={documents} />
+    <Editor
+    onChange={()=>{}}
+    initialContent={documents.content}
+    />
       </div>
     </div>
     </>
