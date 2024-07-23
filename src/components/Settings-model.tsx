@@ -1,5 +1,6 @@
 "use client"
 
+import { Coverimagemode } from "@/app/(main)/_components/models/cover-image-model"
 import { Settingcomponent } from "@/app/(main)/_components/models/setting-model"
 import { useState,useEffect } from "react"
 
@@ -12,6 +13,7 @@ export const Modelprovider=()=>{
     return(
         <>
        <Settingcomponent/> 
+       <Coverimagemode/>
         </>
     )
 }

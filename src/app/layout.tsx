@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexChildProvider } from "@/components/convex-provider";
 import {Toaster} from "sonner"
+import { EdgeStoreProvider } from "@/lib/edgestore";
 import { Modelprovider } from "@/components/Settings-model";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexChildProvider>
+          <EdgeStoreProvider>
         <ThemeProvider attribute="class"
             defaultTheme="system"
             enableSystem
@@ -29,6 +31,7 @@ storageKey="Jotion-change-theme">
   <Toaster className="bottom-center"/>
   <Modelprovider/>
   {children}</ThemeProvider>
+  </EdgeStoreProvider>
 </ConvexChildProvider>
         </body>
     </html>

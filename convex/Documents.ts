@@ -191,3 +191,15 @@ const documents=await ctx.db.patch(args_0.id,{
 return documents
     },
 })
+export const iconremove=mutation({
+    args:{id:v.id("Documents")},
+    handler:async(ctx, args_0)=> {
+        const identity=await ctx.auth.getUserIdentity()
+        if(!identity){throw new Error("Unauthenticated")}
+        const userid=identity.subject
+        const existingdocument=await ctx.db.get(args_0.id)
+        if(userid!==existingdocument?.userid)throw new Error("Unauthorized")
+            const document=await ctx.db.patch(args_0.id,{
+        icon:undefined})
+        return document
+    }})
