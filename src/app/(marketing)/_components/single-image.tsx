@@ -18,8 +18,8 @@ const variants = {
 };
 
 type InputProps = {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className?: string;
   value?: File | string;
   onChange?: (file?: File) => void | Promise<void>;
@@ -121,7 +121,15 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
     }, [fileRejections, dropzoneOptions]);
 
     return (
-      <div>
+      <div className="relative">
+        {
+            disabled && (
+                <div className="flex  items-center justify-center absolute 
+                h-full w-full insert-y-0 bg-background/80 z-99900999">
+                        Loading...
+                </div>
+            )
+        }
         <div
           {...getRootProps({
             className: dropZoneClassName,
