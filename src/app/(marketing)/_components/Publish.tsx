@@ -2,7 +2,8 @@
 
 import { Doc } from "../../../../convex/_generated/dataModel"
 interface publishprops{
-    initialdata:Doc<"Documents">
+    initialdata:Doc<"Documents">,
+    preview?:boolean
 }
 
 import {
@@ -15,13 +16,15 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Check, CheckCircle, Copy, Globe } from "lucide-react"
-export const Publish=({initialdata}:publishprops)=>{
+export const Publish=({initialdata,preview}:publishprops)=>{
+    if(preview==true)return 
    const origin=useorigin()
    const update=useMutation(api.Documents.update)
    const [copied,setcopied]=useState(false)
    const [issubmmiting,setissubmitting]=useState(false)
    const url=`${origin}/preview/${initialdata._id}`
    const onpublish=()=>{
+   
     setissubmitting(true)
 const promise= update({
     id:initialdata._id,
@@ -53,6 +56,7 @@ const promise= update({
     }, 1000);
  }
     return(
+        
         <Popover>
             <PopoverTrigger asChild>
         <Button size="sm" variant="ghost">
