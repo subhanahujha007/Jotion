@@ -14,7 +14,7 @@ import { api } from "../../../../convex/_generated/api"
 import { useState } from "react"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
-import { Globe } from "lucide-react"
+import { Check, CheckCircle, Copy, Globe } from "lucide-react"
 export const Publish=({initialdata}:publishprops)=>{
    const origin=useorigin()
    const update=useMutation(api.Documents.update)
@@ -62,9 +62,53 @@ const promise= update({
             }
         </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-72" align="end"
-            alignOffset={8} >
-
+            <PopoverContent className="z-99999999999999 w-72" align="end"
+            alignOffset={8} forceMount >
+                        {
+                            initialdata.isPublished ?(
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-x-2">
+                                <Globe className="text-sky-500 animate-pulse h-4 w-4" />
+                                <p className="text-xs font-medium text-sky-500">this note is live on web</p>
+                    
+                                    </div>
+                                    <div className="flex items-center">
+                                <input className="truncated" value={url} disabled />
+                                <Button onClick={oncopy} disabled={copied} className="h-8 rounded-sm">
+                                    {
+                                        copied?
+                                        ( <CheckCircle className="h-4 w-4" /> )
+                                        :(
+                                            <Copy className="h-4 w-4"/>
+                                        )
+                                    }
+                                </Button>
+                                    </div>
+                                    <Button
+                                    size="sm"
+                                    onClick={unpublish}
+                                    disabled={issubmmiting}
+                                    >
+                                        UnPublish
+                                    </Button>
+                                </div>
+                            ):(
+                                <div className="flex flex-col items-center justify-center">
+                                    <Globe className="text-white w-4 h-4 text-muted mb-3" />
+                                                <p className="text-sm font-medium mb-2">publish this note</p>
+                                                <span className="text-xs text-muted-foreground mb-4">
+                                                    share your work with others
+                                                </span>
+                                                <Button
+                                                disabled={issubmmiting}
+                                                onClick={onpublish}
+                                                className="w-full text-xs"
+                                                size="sm">
+                                                    publish
+                                                </Button>
+                                </div>
+                            )
+                        }
             </PopoverContent>
             </Popover>
 
