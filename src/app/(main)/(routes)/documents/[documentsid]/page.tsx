@@ -1,20 +1,30 @@
 "use client"
-import { useQuery } from 'convex/react'
+import { useMutation, useQuery } from 'convex/react'
 import { useParams } from 'next/navigation'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { api } from '../../../../../../convex/_generated/api'
 import { Id } from '../../../../../../convex/_generated/dataModel'
 import  Title  from '../../../_components/Title'
 import Banner from '@/app/(main)/_components/Banner'
 import Toolbar from '@/app/(main)/_components/Toolbar'
 import Cover from '@/components/ui/Cover'
-import Editor from '@/app/(main)/_components/Editor'
-
+import dynamic from 'next/dynamic'
+import { Publish } from '@/app/(marketing)/_components/Publish'
 const page = () => {
+  const update=useMutation(api.Documents.update)
+
+  const Editor=useMemo(()=>dynamic(()=>import("../../../_components/Editor"),{ssr:false}),[])
   const params=useParams()
   const documents=useQuery(api.Documents.getbyid,{
     documentid:params.documentsid as Id<"Documents">
   })
+  const onChange=(content:string)=>{
+    
+update({
+  id:params.documentsid as Id<"Documents"> ,
+  content:content
+})
+  }
   if(documents===undefined)return(
     <nav className="bg-background dark:bg-[1F1F1F] px-3 py-3 w-full flex items-center gap-x-4">
 <Title.Skeelton/>
@@ -23,7 +33,9 @@ const page = () => {
   if(documents===null)return null
   return (<>
     <nav className="bg-background dark:bg-[1F1F1F] px-3 py-3 w-full flex items-center gap-x-4">
+      <Publish initialdata={documents}/>
 <div className="flex items-center justify-center w-full">
+  
 <Title initialdata={documents}/>
 </div>
     </nav>
@@ -37,7 +49,7 @@ const page = () => {
        <Cover url={documents.coverimage} />
     <Toolbar initialdata={documents} />
     <Editor
-    onChange={()=>{}}
+    onChange={onChange}
     initialContent={documents.content}
     />
       </div>

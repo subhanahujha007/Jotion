@@ -11,8 +11,11 @@ import { DocumentItem } from './document-list'
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 import { useSearch } from '../../../../hooks/use-search'
 import { Usersetting } from '../../../../hooks/use-settings'
+import { useRouter } from 'next/navigation'
+
 
 const Navigation = () => {
+    const route=useRouter()
     const settings=Usersetting()
     const search = useSearch()
     const create = useMutation(api.Documents.create)
@@ -63,7 +66,9 @@ const Navigation = () => {
     }, [isResizing])
 
     const handleCreate = () => {
-        const promise = create({ title: "Untitled" })
+        const promise = create({ title: "Untitled" }).then((documentsid)=>
+            route.push(`documents/${documentsid}`)
+        )
         toast.promise(promise, {
             loading: "Creating a new node",
             success: "New node created",
