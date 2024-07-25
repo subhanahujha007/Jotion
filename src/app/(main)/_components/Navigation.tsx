@@ -63,7 +63,7 @@ const Navigation = () => {
             document.removeEventListener('mousemove', handleMouseMove)
             document.removeEventListener('mouseup', handleMouseUp)
         }
-    }, [isResizing])
+    }, [])
 
     const handleCreate = () => {
         const promise = create({ title: "Untitled" }).then((documentsid)=>
