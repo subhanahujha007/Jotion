@@ -36,16 +36,16 @@ const onremove=(documentid:Id<"Documents">)=>{
  
     const promise=remove({id:documentid})
     toast.promise(promise,{
-        loading:"Deleting the note",
-        success:"note deleted succesfully",
-        error:"error deleting the note"
+        loading:"Deleting the note..",
+        success:"note deleted succesfully..",
+        error:"error deleting the note.."
     })
 if(params.documentid===documentid){
     route.push("/documents")
 }
 }
 if(document===undefined){
-    <div>Loading...</div>
+    <div>Loading....</div>
 }
   return (
     <div className="text-sm">
