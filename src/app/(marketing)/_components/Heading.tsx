@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import {ArrowRight} from "lucide-react"
+import Link from "next/link"
 const Heading = () => {
   return (
     <div className='max-w-3xl space-y-4'>
@@ -9,10 +10,12 @@ const Heading = () => {
     <h3>Jotion is the connected workspace where better and <br /> faster work happens  </h3>
   <div className='flex flex-row gap-4 justify-center'>
   <Button>
-Enter Jotion <ArrowRight/>
+    <Link href="/documents" >Enter Jotion <ArrowRight/></Link>
+
   </Button>
   <Button>
-    Get Jotion For Free
+    <Link href="/documents">Get Jotion For Free</Link>
+    
   </Button>
   </div>
     </div>
