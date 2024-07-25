@@ -6,7 +6,7 @@ import { useMutation } from 'convex/react'
 import { PlusCircle } from 'lucide-react'
 import { api } from '../../../../../convex/_generated/api'
 import { toast } from 'sonner'
-const page = () => {
+const Page = () => {
   const create=useMutation(api.Documents.create)
   const {user}=useUser()
   const oncreate=()=>{
@@ -28,4 +28,4 @@ create a new note
   )
 }
 
-export default page
+export default Page

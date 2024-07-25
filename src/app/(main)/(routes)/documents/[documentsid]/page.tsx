@@ -10,7 +10,7 @@ import Toolbar from '@/app/(main)/_components/Toolbar'
 import Cover from '@/components/ui/Cover'
 import dynamic from 'next/dynamic'
 import { Publish } from '@/app/(marketing)/_components/Publish'
-const page = () => {
+const Page = () => {
   const update=useMutation(api.Documents.update)
 
   const Editor=useMemo(()=>dynamic(()=>import("../../../_components/Editor"),{ssr:false}),[])
@@ -58,4 +58,4 @@ update({
   )
 }
 
-export default page
+export default Page
