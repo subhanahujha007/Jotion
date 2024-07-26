@@ -14,6 +14,7 @@ if(isLoading){
     )
 }
 if(!isAuthenticated) return redirect("/")
+    if(isAuthenticated) return redirect("/documents")
     return (
         <div className="h-full dark:bg-[#1F1F1F] flex">
             <Navigation />
