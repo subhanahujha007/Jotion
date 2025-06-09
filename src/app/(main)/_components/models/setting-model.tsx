@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Label } from '../../../../components/ui/label';
 import { ModeToggle } from '@/components/ui/mode-change';
 import { Usersetting } from '../../../../../hooks/use-settings';
-import { Dialog, DialogContent } from '@radix-ui/react-dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { DialogHeader } from '@/components/ui/dialog';
 export const Settingcomponent=()=>{
     const settings=Usersetting()

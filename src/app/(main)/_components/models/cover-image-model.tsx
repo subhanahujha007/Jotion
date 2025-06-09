@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { useCoverimageStore } from "../../../../../hooks/use-cover-image"
 import { DialogHeader } from "@/components/ui/dialog"
 import { useState } from "react";

@@ -8,7 +8,7 @@ import { useMutation } from 'convex/react';
 import { api } from '../../../../convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useUser } from '@clerk/clerk-react';
 interface itemprops {
   id?:Id<"Documents">;

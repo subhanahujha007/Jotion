@@ -1,8 +1,8 @@
 import React from 'react'
 import { ChevronsLeftRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Avatar,AvatarImage } from '@radix-ui/react-avatar'
-import { DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
+import { Avatar,AvatarImage } from '@/components/ui/avatar'
+import { DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger } from '../../../components/ui/dropdown-menu'
 import { SignOutButton, useUser } from '@clerk/clerk-react'
 const UserItem = () => {
     const {user}=useUser()
