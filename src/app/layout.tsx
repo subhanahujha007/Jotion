@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from 'next/script';
 import { ConvexChildProvider } from "@/components/convex-provider";
 import {Toaster} from "sonner"
 import { EdgeStoreProvider } from "@/lib/edgestore";
