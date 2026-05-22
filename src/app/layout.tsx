@@ -33,7 +33,13 @@ storageKey="Jotion-change-theme">
   {children}</ThemeProvider>
   </EdgeStoreProvider>
 </ConvexChildProvider>
-        </body>
+<Script
+  src="http://localhost:4000/sdk/widget.js"
+  data-key="chatsop_dda09084900f187fc3f0d8a5bc488c806b72f24f3c49f42b"
+  data-api-base-url="http://localhost:4000"
+  strategy="afterInteractive"
+/>
+      </body>
     </html>
   );
 }
